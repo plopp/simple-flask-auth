@@ -2,6 +2,7 @@ from flask import Flask,render_template,request
 from flask.ext.login import LoginManager,login_required,login_user
 import pickledb
 import uuid
+from passlib.hash import sha512_crypt
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -51,7 +52,8 @@ def create():
 def create_user(name,passw):
     if not user_exists(name):
         print "Users does not exist. Creating."
-        db.dadd('users',(name,[str(uuid.uuid4()),passw]))
+        hash = sha512_crypt.encrypt(passw)
+        db.dadd('users',(name,[str(uuid.uuid4()),hash]))
         return True
     else:
         return False
@@ -87,7 +89,8 @@ def log_the_user_in(name=None):
 def valid_login(name=None, password=None):
     try:
         creds = db.dget('users',name)
-        if password == creds[1]:
+
+        if sha512_crypt.verify(password, creds[1]):
             return True
         else:
             return False
