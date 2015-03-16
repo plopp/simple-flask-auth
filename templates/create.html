@@ -1,0 +1,30 @@
+<!doctype html>
+	<head><title>Simple auth</title></head>
+	<body>
+	<div style="position: absolute; left: 10px; top: 10px; background: #5498db; padding: 20px; border-radius: 10px; width: 300px; border: 2px solid #2980b9; color: #EEEEff">
+		<h3>Create user</h3>
+		<hr>
+		<form method="post">
+		    <label for="username" style="float:left">Username:</label>
+			<input type="text" name="username" style="float:right; width: 70%"/><br style="clear:both">
+			<div style="margin-top: 4px">
+				<label for="password" style="float:left;">Password:</label>
+				<input type="password" name="password" style="float:right; width: 70%"><br style="clear:both">
+			</div>
+			<hr>
+			<input type="submit" style="position: relative; width: 100%; margin-top: 10px" value="Create!"/>
+		</form>
+		{%if error %}
+		<p>{{e_message}}</p>
+		{% endif %}
+	<script>
+		window.addEventListener('load', function() {
+			window.t = "HEJ!"
+		});
+
+		(function(w,d) {
+			
+		})(window,document)
+	</script>
+	</body>
+</html>
