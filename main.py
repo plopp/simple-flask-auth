@@ -32,7 +32,7 @@ def create():
     e_message = None
     error = False
     if request.method == 'POST':
-        name = request.form['username']
+        name = request.form['login']
         passw = request.form['password']
         if name.strip() == "":
             error = True
